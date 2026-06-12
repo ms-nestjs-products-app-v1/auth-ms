@@ -1,2 +1,1 @@
-# auth-ms
-Authentication Microservice (MongoDB &amp; JWT)
+# AUTHENTICATION MICROSERVICE (MongoDB & JWT)
