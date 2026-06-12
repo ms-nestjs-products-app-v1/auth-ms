@@ -20,3 +20,19 @@ AUTH MICROSERVICE (Prisma with MongoDB & JWT)
         $ cd auth-ms
         $ npm run start         // Run development
         $ npm run start:dev     // Run watch mode
+
+    - Instalar dependencias
+        + DotENV (Variables de entorno)
+            $ npm i dotenv
+        + Joi (Vaidador de Schema)
+            $ npm i joi
+        + Comenzar a crear microservices
+            $ npm i --save @nestjs/microservices
+        + NATS (Transporter)
+            $ npm i --save nats
+
+    - NestJS CLI
+        + Crear un nuevo resource (Sin archivos de test)
+            $ nest g res auth --no-spec
+                > ? What transport layer do you use? Microservice (non-HTTP)   // MS
+                > ? Would you like to generate CRUD entry points? (Y/n) n
