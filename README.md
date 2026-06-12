@@ -1,2 +1,1 @@
-# auth-ms
-Authentication Microservice (Prisma with MongoDB &amp; JWT)
+# AUTHENTICATION MICROSERVICE (Prisma with MongoDB & JWT)
