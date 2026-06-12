@@ -38,3 +38,12 @@ AUTH MICROSERVICE (Prisma with MongoDB & JWT)
             $ nest g res auth --no-spec
                 > ? What transport layer do you use? Microservice (non-HTTP)   // MS
                 > ? Would you like to generate CRUD entry points? (Y/n) n
+    
+    - MongoDB (URL: https://www.mongodb.com/)
+        + Sign In/Sign Up
+        + Create a new Cluster (Click '+ Create')
+            > M0 | FREE
+            > Name: Ax2CDev
+            Click 'Create Deployment'
+        + Connection String (Click 'Connect' > 'Drivers' > Copy 'Connection String')
+        + Connection with MongoDB Compass (Click 'Connect' > ddd > Copy the 'Connetion String' and use it on MongoDB Compass)
