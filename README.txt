@@ -30,6 +30,8 @@ AUTH MICROSERVICE (Prisma with MongoDB & JWT)
             $ npm i --save @nestjs/microservices
         + NATS (Transporter)
             $ npm i --save nats
+        + Validation (Validar la data)
+            $ npm i --save class-validator class-transformer
 
     - NestJS CLI
         + Crear un nuevo resource (Sin archivos de test)
