@@ -41,6 +41,8 @@ AUTH MICROSERVICE (Prisma with MongoDB & JWT)
         + Bycrypt (Hash pass)
             $ npm i bcrypt
             $ npm i --save-dev @types/bcrypt    // Types of TS
+        + JWT Token
+            $ npm install --save @nestjs/jwt
 
     - Prisma CLI
         + Create initial setup
