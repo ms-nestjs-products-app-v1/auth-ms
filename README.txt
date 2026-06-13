@@ -38,6 +38,9 @@ AUTH MICROSERVICE (Prisma with MongoDB & JWT)
         + Prisma Client
             $ npm install @prisma/client (No support for Prisma ORM v7)
             $ npm install @prisma/client@6.19
+        + Bycrypt (Hash pass)
+            $ npm i bcrypt
+            $ npm i --save-dev @types/bcrypt    // Types of TS
 
     - Prisma CLI
         + Create initial setup
