@@ -3,7 +3,7 @@ import { RpcException } from '@nestjs/microservices';
 import bcrypt from 'bcrypt';
 
 import { PrismaService } from 'src/prisma.service';
-import { RegisterUserDto } from './dto';
+import { LoginUserDto, RegisterUserDto } from './dto';
 
 @Injectable()
 export class AuthService {
@@ -20,7 +20,7 @@ export class AuthService {
       if (user) {
         throw new RpcException({
           message: 'User already exists',
-          status: 'Bad Request',
+          error: 'Bad Request',
           statusCode: HttpStatus.BAD_REQUEST, // 400
         });
       }
@@ -43,11 +43,47 @@ export class AuthService {
     } catch (error) {
       throw new RpcException({
         message: error?.message,
-        status: 'Bad Request',
+        error: 'Bad Request',
         statusCode: HttpStatus.BAD_REQUEST, // 400
       });
     }
+  }
 
-    return registerUserDto;
+  async loginUser(loginUserDto: LoginUserDto) {
+    const { email, password } = loginUserDto;
+
+    try {
+      // Get user and validete it
+      const user = await this.prisma.user.findFirst({ where: { email } });
+      if (!user) {
+        throw new RpcException({
+          message: 'Invalid credencials',
+          error: 'Unauthorized',
+          statusCode: HttpStatus.UNAUTHORIZED, // 401
+        });
+      }
+
+      // Compare password
+      const isPasswordValid = bcrypt.compareSync(password, user.password);
+      if (!isPasswordValid) {
+        throw new RpcException({
+          message: 'Invalid credencials',
+          error: 'Unauthorized',
+          statusCode: HttpStatus.UNAUTHORIZED, // 401
+        });
+      }
+      const { password: _, ...rest } = user;
+
+      return {
+        user: rest,
+        token: 'ABC123',
+      };
+    } catch (error) {
+      throw new RpcException({
+        message: error?.message,
+        error: 'Bad Request',
+        statusCode: HttpStatus.BAD_REQUEST, // 400
+      });
+    }
   }
 }
