@@ -32,6 +32,23 @@ AUTH MICROSERVICE (Prisma with MongoDB & JWT)
             $ npm i --save nats
         + Validation (Validar la data)
             $ npm i --save class-validator class-transformer
+        + Prisma (ORM)
+            $ npm install prisma --save-dev (No support for Prisma ORM v7)
+            $ npm install prisma@6.19 --save-dev
+        + Prisma Client
+            $ npm install @prisma/client (No support for Prisma ORM v7)
+            $ npm install @prisma/client@6.19
+
+    - Prisma CLI
+        + Create initial setup
+            $ npx prisma init --datasource-provider mongodb
+            $ npx prisma init --datasource-provider mongodb --output ../generated/prisma
+        + Introspect your DB (Crea o actualiza los modelos) [Optional]
+            $ npx prisma db pull
+        + Generate the types and Client (MongoDB no usa migraciones)
+            $ npx prisma generate
+        + Push the changes to your DB [Optional]
+            $ npx prisma db push
 
     - NestJS CLI
         + Crear un nuevo resource (Sin archivos de test)
