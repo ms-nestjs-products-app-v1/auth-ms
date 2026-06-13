@@ -6,6 +6,7 @@ import bcrypt from 'bcrypt';
 import { PrismaService } from 'src/prisma.service';
 import { LoginUserDto, RegisterUserDto } from './dto';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
+import { envs } from 'src/config';
 
 @Injectable()
 export class AuthService {
@@ -92,6 +93,27 @@ export class AuthService {
         message: error?.message,
         error: 'Bad Request',
         statusCode: HttpStatus.BAD_REQUEST, // 400
+      });
+    }
+  }
+
+  async verifyToken(token: string) {
+    try {
+      // Verify Token
+      const { sub, iat, exp, ...user } = this.jwtService.verify(token, {
+        secret: envs.jwtSecret,
+      });
+
+      return {
+        user: user,
+        token: await this.signJWT(user), // Generar un nuevo token
+      };
+    } catch (error) {
+      console.log(error);
+      throw new RpcException({
+        message: 'Invalid token',
+        error: 'Unauthorized',
+        statusCode: HttpStatus.UNAUTHORIZED, // 401
       });
     }
   }
